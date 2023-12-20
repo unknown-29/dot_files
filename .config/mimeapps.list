@@ -1,0 +1,17 @@
+[Default Applications]
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
+video/mp4=vlc.desktop
+application/x-zerosize=org.gnome.Totem.desktop
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_var_lib_snapd_snap_eclipse_73_.desktop
+
+[Added Associations]
+video/mp4=vlc_vlc.desktop;vlc.desktop;
+application/x-zerosize=org.gnome.Totem.desktop;
+application/x-shellscript=org.gnome.TextEditor.desktop;nvim.desktop;
+text/x-matlab=org.gnome.TextEditor.desktop;org.xfce.mousepad.desktop;
+text/x-csrc=org.gnome.TextEditor.desktop;
+text/plain=org.xfce.mousepad.desktop;org.gnome.TextEditor.desktop;

@@ -1,0 +1,173 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+// ### DEFAULT ### //
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 0,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 5,
+"margin-left": 8,
+"margin-right": 8,
+
+"modules-left": [
+	"hyprland/workspaces#pacman",
+	"custom/separator#blank_2",
+	"cpu",
+	"custom/separator#blank_2", 
+	//"temperature",
+	//"custom/separator#dot-line",
+	"disk",
+	"custom/separator#blank_2",
+	"memory",
+	"custom/separator#blank_2",
+	// "custom/separator#blank",
+	// "custom/weather2",
+	"custom/weather",
+	],
+
+"modules-center": [
+	//"custom/menu",
+	//"custom/separator#dot-line",
+	//"idle_inhibitor", 
+	//"custom/separator#dot-line",
+	//"clock",
+	//"custom/separator#blank_2",
+	//"custom/light_dark",
+	//"custom/separator#dot-line",	
+	//"custom/lock",
+	//],
+	//"custom/separator#dot-line",
+	//"custom/keybinds",
+	"clock",
+	"pulseaudio",
+	"custom/spotify",
+	"custom/separator#blank_2",
+	"custom/cava-internal",
+	], 
+
+"modules-right": [
+	//"custom/cava",
+	//"clock",
+	"custom/weather2",
+	"custom/separator#blank_2",
+	"tray",
+	"custom/separator#blank_2",
+	"custom/light_dark",
+	"custom/separator#blank_2",
+	"bluetooth",
+	"custom/separator#blank_2",
+	//"network#speed",
+	//"cava",
+	//"custom/separator#blank_2", 
+	"battery",
+	"custom/separator#blank_2", 
+	"backlight",
+	"custom/separator#blank_2",
+	//"pulseaudio",
+	//"custom/separator#blank_2",
+	//"wireplumber", 
+	"pulseaudio#microphone",
+	//"custom/separator#blank_2",
+	//"keyboard-state",
+	"custom/separator#blank_2",
+	"custom/power",
+	],
+"custom/cava-internal": {
+    "exec": "~/.config/waybar/Cava.sh",
+    //"exec": "~/.config/waybar/cava-internal.sh",
+    "tooltip": false
+  },
+"custom/spotify": {
+        "exec": "/usr/bin/python3 /home/dm/.config/waybar/mediaplayer.py --player spotify",
+        "format": "{icon} {}",
+        "smooth-scrolling-threshold": 10,
+	"format-icons": {
+            "spotify": "  ",
+	    //"chromium": " 󰗃 ",
+  	    "Playing": "  ", // Uncomment if not using the dynamic script
+           "Paused": "  ",
+            //"Stopped": "&#x202d;ﭥ " // This stop symbol is RTL. So &#x202d; is left-to-right override.
+
+        },
+        "max-length": 17,
+	"tooltip": true,
+	"escape": true,
+        "return-type": "json",
+        "on-click": "playerctl --player spotify play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+"custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+	"on-click": "playerctl play-pause",
+        "on-click-right": "playerctl stop",
+        "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    	"on-scroll-up": "playerctl next",
+    	"on-scroll-down": "playerctl previous",
+	"tooltip":false,
+        "format-icons": {
+            "spotify": "",
+            "default": "󰗃",
+            "Playing": " ", // Uncomment if not using the dynamic script
+            "Paused": " ",
+            "Stopped": "&#x202d;ﭥ " // This stop symbol is RTL. So &#x202d; is left-to-right override.
+        },
+        "escape": true,
+        "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+    	//"background": "#344080" // Set the background color with alpha channel for transparency
+
+    },
+
+"custom/cava1": {
+    "exec": "sleep 3 && cava -p /home/dm/.config/cava/config1 | sed -u 's/;//g;s/0/0/g;s/1/1/g;s/2/2/g;s/3/3/g;s/4/4/g;s/5/5/g;s/6/6/g;s/7/7/g;s/8/8/g;s/9/9/g;'"
+},
+"cavaa": {
+  	//"cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+  	"framerate": 30,
+  	"autosens": 1,
+  	//"sensitivity": 100,
+  	"bars": 14,
+  	"lower_cutoff_freq": 50,
+  	"higher_cutoff_freq": 10000,
+  	"method": "pulse",
+  	"source": "auto",
+  	"stereo": true,
+  	"reverse": false,
+  	"bar_delimiter": 0,
+  	"monstercat": false,
+  	"waves": false,
+  	"noise_reduction": 0.77,
+  	"input_delay": 2,
+  	"format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+  	"actions": {
+  		"on-click-right": "mode"
+  	}
+  },
+"custom/music": {
+        "format": "{icon}{}",
+        "format-icons": {
+             "Playing": " ", // Uncomment if not using the dynamic script
+            "Paused": " ",
+            "Stopped": "&#x202d;ﭥ " // This stop symbol is RTL. So &#x202d; is left-to-right override.
+        },
+	"smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+
+        "escape": true,
+        "tooltip": true,
+        "exec": "/home/dm/.config/waybar/caway -b 10 -e",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl previous",
+        "on-scroll-down": "playerctl next",
+        "on-click-right": "g4music",
+        "max-length": 35
+    },
+}
